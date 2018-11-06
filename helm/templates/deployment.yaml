@@ -1,0 +1,48 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}
+  labels:
+    app: http-show-headers
+    release: {{ .Release.Name }}
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      app: http-show-headers
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: http-show-headers
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+      - name: python
+        image: {{ .Values.image.name }}:{{ .Values.image.version }}
+        ports:
+        - containerPort: 8080
+        resources:
+          {{- if .Values.requests }}
+          requests:
+            cpu: {{ .Values.requests.cpu }}
+            memory: {{ .Values.requests.memory }}
+          {{- end }}
+          {{- if .Values.limits }}
+          limits:
+            cpu: {{ .Values.limits.cpu }}
+            memory: {{ .Values.limits.memory }}
+          {{- end }}
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+{{- if .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml .Values.nodeSelector | indent 8 }}
+{{- end }}

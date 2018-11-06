@@ -1,0 +1,14 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}
+spec:
+  selector:
+    app: http-show-headers
+    release: {{ .Release.Name }}
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 8080

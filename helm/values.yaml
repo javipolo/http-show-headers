@@ -1,0 +1,16 @@
+replicas: 1
+image:
+  name: javipolo/http-show-headers
+  version: latest
+
+requests:
+  cpu: 100m
+  memory: 100M
+
+ingress:
+  class: nginx
+  host: your-hostname.org
+  path: /http-show-headers
+  tlsSecret:
+
+nodeSelector:
