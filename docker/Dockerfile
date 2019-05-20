@@ -6,4 +6,4 @@ ADD requirements.txt .
 RUN pip install -r requirements.txt
 
 COPY http-show-headers.py .
-CMD ["python", "http-show-headers.py" ]
+CMD ["python", "-u", "http-show-headers.py" ]

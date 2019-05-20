@@ -13,4 +13,6 @@ ingress:
   path: /http-show-headers
   tlsSecret:
 
+debug: false
+
 nodeSelector:

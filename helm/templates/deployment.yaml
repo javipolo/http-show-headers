@@ -21,6 +21,11 @@ spec:
       containers:
       - name: python
         image: {{ .Values.image.name }}:{{ .Values.image.version }}
+        env:
+          {{- if .Values.debug }}
+          - name: DEBUG
+            value: 'true'
+          {{- end }}
         ports:
         - containerPort: 8080
         resources:
