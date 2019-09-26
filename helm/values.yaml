@@ -1,7 +1,7 @@
 replicas: 1
 image:
   name: javipolo/http-show-headers
-  version: latest
+  tag: latest
 
 requests:
   cpu: 100m

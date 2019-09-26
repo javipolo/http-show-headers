@@ -21,7 +21,7 @@ spec:
       imagePullPolicy: Always
       containers:
       - name: python
-        image: {{ .Values.image.name }}:{{ .Values.image.version }}
+        image: {{ .Values.image.name }}:{{ .Values.image.tag }}
         env:
           {{- if .Values.debug }}
           - name: DEBUG
