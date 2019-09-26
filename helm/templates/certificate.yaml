@@ -1,0 +1,16 @@
+{{- if .Values.ingress.tlsSecret }}
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: {{ .Release.Name }}
+spec:
+  secretName: {{ .Values.ingress.tlsSecret }}
+  renewBefore: 360h # 15d
+  commonName: {{ .Values.ingress.host }}
+  dnsNames:
+  - {{ .Values.ingress.host }}
+  issuerRef:
+    name: {{ .Values.ingress.tlsIssuer }}
+    kind: ClusterIssuer
+{{- end }}
+

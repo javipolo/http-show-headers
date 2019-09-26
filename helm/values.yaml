@@ -12,6 +12,7 @@ ingress:
   host: your-hostname.org
   path: /http-show-headers
   tlsSecret:
+  tlsIssuer: letsencrypt
 
 debug: false
 

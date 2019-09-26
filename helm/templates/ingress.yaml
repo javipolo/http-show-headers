@@ -5,6 +5,10 @@ metadata:
   annotations:
     ingress.kubernetes.io/ssl-redirect: "false"
     kubernetes.io/ingress.class: {{ .Values.ingress.class }}
+    {{- if .Values.ingress.tlsSecret }}
+    certmanager.k8s.io/acme-challenge-type: http01
+    certmanager.k8s.io/cluster-issuer: {{ .Values.ingress.tlsIssuer }}
+    {{- end }}
 spec:
   rules:
   - host: {{ .Values.ingress.host | quote }}
