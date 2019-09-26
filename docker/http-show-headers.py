@@ -1,17 +1,18 @@
 #!/usr/bin/env python
 
+from bottle import route, run, request
+from json import dumps
+from os import environ
+
 # Where to listen on HTTP
 address = '0.0.0.0'
 port = 8080
 
-from pprint import pformat
-from bottle import route, run, request, static_file
-from json import dumps
-from os import environ
 
 @route('/healthz')
 def get_health():
     return "true"
+
 
 @route('/:#.*#', method='ANY')
 def print_headers():
@@ -20,7 +21,11 @@ def print_headers():
         my_dict[k] = request.headers[k]
     if 'DEBUG' in environ:
         if environ['DEBUG'] == 'true':
-            print dumps(my_dict, sort_keys=True, indent=2)
+            print(dumps(my_dict, sort_keys=True))
+            postdata = request.body.read()
+            print(postdata)
     return dumps(my_dict, sort_keys=True, indent=2)
 
-run(host=address, port=port)
+
+if __name__ == '__main__':
+    run(host=address, port=port)
