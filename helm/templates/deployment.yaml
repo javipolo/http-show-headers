@@ -18,6 +18,7 @@ spec:
         app: http-show-headers
         release: {{ .Release.Name }}
     spec:
+      imagePullPolicy: Always
       containers:
       - name: python
         image: {{ .Values.image.name }}:{{ .Values.image.version }}
