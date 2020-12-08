@@ -8,11 +8,11 @@ requests:
   memory: 100M
 
 ingress:
-  class: nginx
+  class: traefik
   host: your-hostname.org
   path: /http-show-headers
   tlsSecret:
-  tlsIssuer: letsencrypt
+  letsEncrypt: true
 
 debug: false
 
