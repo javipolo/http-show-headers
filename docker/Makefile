@@ -2,7 +2,7 @@
 
 USER=javipolo
 NAME=http-show-headers
-VERSION=0.1
+VERSION=0.2
 IMAGE=${USER}/${NAME}:${VERSION}
 LATEST=${USER}/${NAME}:latest
 

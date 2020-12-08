@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 from bottle import route, run, request
 from json import dumps
@@ -23,9 +23,13 @@ def print_headers():
         if environ['DEBUG'] == 'true':
             print(dumps(my_dict, sort_keys=True))
             postdata = request.body.read()
-            print(postdata)
-    return dumps(my_dict, sort_keys=True, indent=2)
+            if postdata != "":
+                print(postdata)
+    return dumps(my_dict, sort_keys=True, indent=2) + "\n"
 
 
 if __name__ == '__main__':
-    run(host=address, port=port)
+    if 'DEBUG' in environ and environ['DEBUG'] == 'true':
+        run(host=address, port=port, quiet=True)
+    else:
+        run(host=address, port=port)

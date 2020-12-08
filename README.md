@@ -20,11 +20,11 @@ $ curl http://localhost:8080
 }
 ```
 
-## Deploy in kubernetes with helm
+## Deploy or upgrade in kubernetes with helm
 Copy or modify values.yaml and deploy as usual:
 
 ```
-helm install --name http-show-headers -f /path/to/custom-values.yaml helm/
+helm upgrade -i http-show-headers -f values.yaml helm/
 ```
 and test
 ```

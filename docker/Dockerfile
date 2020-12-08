@@ -1,4 +1,4 @@
-FROM python:2
+FROM python:3
 MAINTAINER Javi Polo <javipolo@drslump.org>
 
 WORKDIR /usr/src/app
